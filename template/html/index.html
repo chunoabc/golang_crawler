@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link href="/assets/css/custom.css" rel="stylesheet">
+    </head>
+    <body style="background: #343a40">
+        <button class="btn btn-outline-secondary" type="button" id="logout" style="float: right;margin-right: 20px;">登出</button>
+        <h1 style="text-align: center ;margin: 15px; color:azure">DeviantArt Crawler</h1>
+
+        <hr style="color:#e9ecef">
+
+        <div class="input-group flex-nowrap mb-3">
+                <input type="text" class="form-control" placeholder="Artist's Name" id="artist-name">
+                <button class="btn btn-outline-secondary" type="button" id="search">搜尋</button>
+        </div>
+        <h3 id="gallery" style="margin-left: 20px; color: #e9ecef; float:left"></h5>
+        <div id="gallery-container" class="container" style="margin-top: 100px; color: azure;"> </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            function onSearch() {
+                $('#gallery-container').empty();
+                $('#gallery-container').append("圖片加載中...")
+                const name = $('#artist-name').val();
+                if(name !== "") {
+                    $('#gallery').text(`${name}'s Gallery`)
+                }
+
+                $.ajax({
+                    type: "GET",
+                    url: "/index/getData",
+                    data: {name},
+                    success: function(res) {
+                        if (res) {
+                            $('#gallery-container').empty();
+                            $('#gallery-container').append(res)
+                        } else {
+                            $('#gallery-container').empty();
+                            $('#gallery-container').append("無相關資料")
+                        }
+                    },
+                });
+            }
+
+            function onLogout() {
+                $.ajax({
+                    type: "POST",
+                    url: "/logout",
+                    success: function(res) {
+                        window.location.href = "/login";
+                    },
+                    error: function(err) {
+                        alert(err.responseJSON.status)
+                    }
+                });
+            }
+
+            $('#search').click(onSearch)
+            $('#logout').click(onLogout)
+        </script>
+    </body>
+</html>

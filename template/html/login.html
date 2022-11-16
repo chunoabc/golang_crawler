@@ -1,0 +1,60 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="/assets/css/custom.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="bg">
+    <!-- {{ if .success }}
+        <div class="alert alert-success" role="alert">
+            {{ .success }}
+        </div>
+    {{ end }}
+    {{if .error}}
+        <div class="alert alert-danger" role="alert">
+            {{ .error }}
+        </div>
+    {{end}} -->
+    <div class="container register-form login-container">
+            <div class="form">
+                <div class="note">
+                    <p>登入</p>
+                </div>
+
+                <div class="form-content" style="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" id="username" class="form-control " placeholder="使用者名稱" name="username" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="password" class="form-control" placeholder="密碼" name="password" value=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btnSubmit" id="button_login">登入</button>
+                </div>
+            </div>
+    </div>
+<div>
+
+<script>
+    function onLogin() {
+        const username = $('#username').val();
+        const password = $('#password').val();
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: {username, password},
+            success: function(res) {
+                console.log('===進success===')
+                window.location.href = "http://localhost:8888/index";
+                console.log('===進success===222')
+            },
+            error: function(err) {
+                alert(err.responseJSON.status)
+            }
+        });
+    }
+
+    $('#button_login').click(onLogin)
+</script>

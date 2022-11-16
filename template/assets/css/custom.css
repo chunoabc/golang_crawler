@@ -1,0 +1,60 @@
+.bg{
+    background-image: url('../img/login_bg.png');
+    background-size:cover;
+    height: 100%
+}
+.note
+{
+    text-align: center;
+    height: 80px;
+    /* background: -webkit-linear-gradient(left, #0072ff, #8811c5); */
+    color: #656464;
+    font-weight: bold;
+    line-height: 80px;
+    font-size: 24px;
+}
+.form-content
+{
+    padding: 5%;
+    /* border: 1px solid #ced4da; */
+    margin-bottom: 2%;
+}
+.form-control{
+    border-radius:1.5rem;
+}
+.btnSubmit
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #2796db;
+    color: #fff;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.login-container {
+    background: #fff;
+    border-radius:1.5rem;
+    height: 400px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.input-group {
+    margin-right: 20px;
+    width: 300px;
+    float: right;
+}
+.da-button {
+    background: linear-gradient(112deg,#4cddbd,#06f286);
+}
+img {
+    margin: 5px;
+}
