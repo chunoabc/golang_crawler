@@ -57,7 +57,7 @@ func LoginAuth(c *gin.Context) {
 		return
 	}
 	if err := Auth(username, password); err == nil {
-		c.SetCookie("site_cookie", "cookievalue", 600, "/", "localhost", false, true)
+		c.SetCookie("site_cookie", "cookievalue", 600, "/", "/", false, true)
 		c.JSON(http.StatusOK, gin.H{})
 		return
 	} else {
@@ -66,7 +66,7 @@ func LoginAuth(c *gin.Context) {
 	}
 }
 func logout(c *gin.Context) {
-	c.SetCookie("site_cookie", "cookievalue", -1, "/", "localhost", false, true)
+	c.SetCookie("site_cookie", "cookievalue", -1, "/", "/", false, true)
 	c.JSON(http.StatusOK, gin.H{})
 	// c.Redirect(http.StatusMovedPermanently, "/login")
 }

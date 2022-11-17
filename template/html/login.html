@@ -46,9 +46,9 @@
             url: "/login",
             data: {username, password},
             success: function(res) {
-                console.log('===進success===')
-                window.location.href = "http://localhost:8888/index";
-                console.log('===進success===222')
+                // console.log('===進success===')
+                window.location.href = "/index";
+                // console.log('===進success===222')
             },
             error: function(err) {
                 alert(err.responseJSON.status)
